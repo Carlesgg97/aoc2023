@@ -10,3 +10,7 @@ edition = "2021"
 [[bin]]
 name = "aoc1"
 path = "src/bin/aoc1.rs"
+
+[[bin]]
+name = "aoc2"
+path = "src/bin/aoc2.rs"
