@@ -1,16 +1,36 @@
 use std::io::{self, BufRead};
 
+mod digit_string;
+
+use digit_string::DigitString;
+
 fn main() {
     let reader = io::stdin().lock();
 
     let result = reader.lines().filter_map(|l| {
+        let binding = l.expect("failed to read line");
+        let l = binding.as_str();
+
         let mut first: Option<char> = None;
         let mut last: Option<char> = None;
-        l.expect("failed to read line").chars().for_each(|c| {
+
+        l.char_indices().for_each(|(offset, c)| {
             if c.is_digit(10) {
                 first.get_or_insert(c);
                 last = Some(c);
+                return;
+            }
 
+            let num_match = DigitString::iterator().find_map(|digit_string| {
+                if l.get(offset..)?.starts_with(digit_string.as_str()) {
+                    return Some(digit_string.as_char())
+                }
+                None
+            });
+
+            if let Some(d) = num_match {
+                first.get_or_insert(d);
+                last = Some(d);
             }
         });
 
