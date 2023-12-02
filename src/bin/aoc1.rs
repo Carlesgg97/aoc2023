@@ -1,8 +1,6 @@
 use std::io::{self, BufRead};
 
-mod digit_string;
-
-use digit_string::DigitString;
+use aoc2023::digit_string::DigitString;
 
 fn main() {
     let reader = io::stdin().lock();

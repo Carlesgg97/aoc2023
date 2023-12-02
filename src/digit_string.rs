@@ -1,4 +1,4 @@
-#[derive(Debug,Clone)]
+#[derive(Debug, Clone)]
 pub enum DigitString {
     One,
     Two,
@@ -8,7 +8,7 @@ pub enum DigitString {
     Six,
     Seven,
     Eight,
-    Nine
+    Nine,
 }
 
 impl DigitString {
@@ -41,7 +41,9 @@ impl DigitString {
     }
 
     pub fn iterator() -> DigitStringIterator {
-        DigitStringIterator { current_variant: None }
+        DigitStringIterator {
+            current_variant: None,
+        }
     }
 }
 
